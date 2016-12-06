@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/indoc
+    username: nickb
+    password: password
+    tomcat:
+      max-active: 50
+      initial-size: 20
+#      min-idle: 2
+#      max-idle: 2
+      test-on-borrow: true
+      validation-query: select 1
+  main:
+    web-environment: false
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: true
