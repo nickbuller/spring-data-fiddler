@@ -16,19 +16,29 @@ public class OrganisationType {
     @SequenceGenerator(name = "organisation_type_seq", sequenceName = "organisation_type_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "organisation_type_seq")
     private Long id;
+
     private String name;
+
     private String description;
+
     @Column(name = "private")
+
     private Boolean isPrivate;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owning_organisation_id")
     private Organisation organisation;
-    @Column(name = "creatorid")
-    private Long creatorId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatorid")
+    private Organisation creator;
+
     @Column(name = "createdts")
     private LocalDateTime createdts;
+
     @Column(name = "modifiedts")
     private LocalDateTime modifiedTs;
+
     @Column(name = "modifierid")
     private Long modifierId;
 
@@ -88,12 +98,12 @@ public class OrganisationType {
         this.organisation = organisation;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+    public Organisation getCreator() {
+        return creator;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setCreatorId(Organisation creator) {
+        this.creator = creator;
     }
 
     public LocalDateTime getCreatedts() {
@@ -130,7 +140,7 @@ public class OrganisationType {
         sb.append(", description='").append(description).append('\'');
         sb.append(", isPrivate=").append(isPrivate);
         sb.append(", organisation=").append(organisation.getId());
-        sb.append(", creatorId=").append(creatorId);
+        sb.append(", creator=").append(creator);
         sb.append(", createdts=").append(createdts);
         sb.append(", modifiedTs=").append(modifiedTs);
         sb.append(", modifierId=").append(modifierId);

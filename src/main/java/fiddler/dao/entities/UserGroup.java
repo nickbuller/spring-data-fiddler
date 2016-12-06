@@ -24,6 +24,4 @@ public class UserGroup {
     private LocalDateTime modifiedTs;
     @Column(name = "modifierid")
     private Long modifierId;
-
-
 }

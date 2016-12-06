@@ -32,10 +32,10 @@ public class Application {
     @Transactional
     public CommandLineRunner demo(ContainerTypeRepository containerTypeRepository, ContainerRepository containerRepository) {
         return (args) -> {
-            containerTypeRepository.findAll().forEach(containerType -> System.out.println(containerType));
-
-            ContainerType containerType = containerTypeRepository.findOne(40L);
-            containerRepository.findByContainerType(containerType).forEach(container -> System.out.println(container));
+//            containerTypeRepository.findAll().forEach(containerType -> System.out.println(containerType));
+//
+//            ContainerType containerType = containerTypeRepository.findOne(40L);
+//            containerRepository.findByContainerType(containerType).forEach(container -> System.out.println(container));
         };
     }
 }

@@ -18,26 +18,36 @@ public class Organisation {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "organisation_seq")
     private Long id;
     private String name;
-    @Column(name = "creatorid")
-    private Long creatorId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatorid")
+    private Organisation creator;
+
     @Column(name = "createdts")
     private LocalDateTime createdts;
+
     @Column(name = "modifiedts")
     private LocalDateTime modifiedTs;
-    @Column(name = "modifierid")
-    private Long modifierId;
-    @OneToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modifierid")
+    private Organisation modifier;
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_type_id")
     private OrganisationType organisationType;
+
     //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name="template_id") private Organisation template;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "default_user_group_id")
     private UserGroup userGroup;
-    @OneToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "default_locale_id")
     private Locale locale;
-    @OneToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "root_account_id")
     private Account account;
 
@@ -57,12 +67,12 @@ public class Organisation {
         this.name = name;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+    public Organisation getCreatorId() {
+        return creator;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setCreatorId(Organisation creator) {
+        this.creator = creator;
     }
 
     public LocalDateTime getCreatedts() {
@@ -81,12 +91,12 @@ public class Organisation {
         this.modifiedTs = modifiedTs;
     }
 
-    public Long getModifierId() {
-        return modifierId;
+    public Organisation getModifierId() {
+        return modifier;
     }
 
-    public void setModifierId(Long modifierId) {
-        this.modifierId = modifierId;
+    public void setModifierId(Organisation modifier) {
+        this.modifier = modifier;
     }
 
     public OrganisationType getOrganisationType() {
@@ -158,10 +168,10 @@ public class Organisation {
         final StringBuffer sb = new StringBuffer("Organisation{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
-        sb.append(", creatorId=").append(creatorId);
+        sb.append(", creatorId=").append(creator.getId());
         sb.append(", createdts=").append(createdts);
         sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifierId);
+        sb.append(", modifierId=").append(modifier.getId());
         sb.append(", organisationType=").append(organisationType.getId());
         sb.append(", status='").append(status).append('\'');
         sb.append(", scope='").append(scope).append('\'');

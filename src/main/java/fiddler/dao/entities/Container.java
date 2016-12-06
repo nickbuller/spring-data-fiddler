@@ -10,22 +10,35 @@ public class Container {
     private String name;
     private String status;
     private Long state_id;
+
     private String scope;
-    @OneToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "container_type_id")
     private ContainerType containerType;
-    @OneToOne(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Organisation owningOrganisation;
+
     private Long templateId;
+
     private Long contentRbacTemplateId;
+
     private String digest;
-    @Column(name = "creatorid")
-    private Long creatorId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatorid")
+    private Organisation creator;
+
     private LocalDateTime createdts;
+
     private LocalDateTime modifiedts;
-    @Column(name = "modifierid")
-    private Long modifierId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modifierid")
+    private Organisation modifier;
+
     private Boolean locked;
     private Long lockOwnerId;
     private Long lockKey;
@@ -113,12 +126,12 @@ public class Container {
         this.digest = digest;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+    public Organisation getCreator() {
+        return creator;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setCreator(Organisation creator) {
+        this.creator = creator;
     }
 
     public LocalDateTime getCreatedts() {
@@ -137,12 +150,12 @@ public class Container {
         this.modifiedts = modifiedts;
     }
 
-    public Long getModifierId() {
-        return modifierId;
+    public Organisation getModifier() {
+        return modifier;
     }
 
-    public void setModifierId(Long modifierId) {
-        this.modifierId = modifierId;
+    public void setModifier(Organisation modifier) {
+        this.modifier = modifier;
     }
 
     public Boolean getLocked() {
@@ -206,10 +219,10 @@ public class Container {
                 ", templateId=" + templateId +
                 ", contentRbacTemplateId=" + contentRbacTemplateId +
                 ", digest='" + digest + '\'' +
-                ", creatorId=" + creatorId +
+                ", creator=" + creator +
                 ", createdts=" + createdts +
                 ", modifiedts=" + modifiedts +
-                ", modifierId=" + modifierId +
+                ", modifier=" + modifier +
                 ", locked=" + locked +
                 ", lockOwnerId=" + lockOwnerId +
                 ", lockKey=" + lockKey +
