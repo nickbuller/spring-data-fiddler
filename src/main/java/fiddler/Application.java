@@ -1,5 +1,6 @@
 package fiddler;
 
+import fiddler.dao.entities.ContainerType;
 import fiddler.dao.repository.ContainerRepository;
 import fiddler.dao.repository.ContainerTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootApplication
 @ComponentScan
 public class Application {
-    private static
+    private
     @Autowired
     ContainerRepository containerRepository;
-    private static
+    private
     @Autowired
     ContainerTypeRepository containerTypeRepository;
 
@@ -27,13 +28,18 @@ public class Application {
     }
 
     @Bean
-    @Transactional
+
     public CommandLineRunner demo(ContainerTypeRepository containerTypeRepository, ContainerRepository containerRepository) {
-        return (args) -> {
-//            containerTypeRepository.findAll().forEach(containerType -> System.out.println(containerType));
-//
-//            ContainerType containerType = containerTypeRepository.findOne(40L);
-//            containerRepository.findByContainerType(containerType).forEach(container -> System.out.println(container));
+        return new CommandLineRunner() {
+            @Override
+            @Transactional
+            public void run(String... args) throws Exception {
+
+                containerTypeRepository.findAll().forEach(containerType -> System.out.println(containerType));
+
+                ContainerType containerType = containerTypeRepository.findOne(40L);
+                containerRepository.findByContainerType(containerType).forEach(container -> System.out.println(container));
+            }
         };
     }
 }
