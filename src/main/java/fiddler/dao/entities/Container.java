@@ -46,6 +46,12 @@ public class Container {
     private String securityRating;
     private String loanRef;
 
+//    @OneToOne(fetch = FetchType.LAZY, mappedBy = "value.owner_container")
+//    private InterContainerMembership ownerContainer;
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member_container")
+//    private Set<InterContainerMembership> memberContainers;
+
     public Long getId() {
         return id;
     }
@@ -206,6 +212,22 @@ public class Container {
         this.loanRef = loanRef;
     }
 
+//    public InterContainerMembership getOwnerContainer() {
+//        return ownerContainer;
+//    }
+//
+//    public void setOwnerContainer(InterContainerMembership ownerContainer) {
+//        this.ownerContainer = ownerContainer;
+//    }
+
+//    public Set<InterContainerMembership> getMemberContainers() {
+//        return memberContainers;
+//    }
+//
+//    public void setMemberContainers(Set<InterContainerMembership> memberContainers) {
+//        this.memberContainers = memberContainers;
+//    }
+
     @Override
     public String toString() {
         return "Container{" +
@@ -229,6 +251,8 @@ public class Container {
                 ", creditRating='" + creditRating + '\'' +
                 ", securityRating='" + securityRating + '\'' +
                 ", loanRef='" + loanRef + '\'' +
+//                ", ownerContainer=" + ownerContainer +
+//                ", memberContainers=" + memberContainers +
                 '}';
     }
 }
