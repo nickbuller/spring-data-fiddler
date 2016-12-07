@@ -21,9 +21,17 @@ public class AccountTest {
 
     @Test
     @Transactional
-    public void testAccount() {
+    public void testRepositoryFindOne() {
 
         Account account = accountRepository.findOne(1L);
         Assert.assertNotNull(account);
+        TestUtils.validateToString(account);
     }
+
+    @Test
+    @Transactional
+    public void testRepositoryFindAll() {
+        accountRepository.findAll().forEach(account -> TestUtils.validateToString(account));
+    }
+
 }

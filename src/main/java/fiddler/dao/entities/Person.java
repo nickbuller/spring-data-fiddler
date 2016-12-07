@@ -1,15 +1,18 @@
-package fiddler.dao.generated;
+package fiddler.dao.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Entity
 public class Person {
+
+    @Id
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @Column(name = "id")
     private int id;
+
     private Integer personTypeId;
     private String name;
     private String scope;
@@ -18,14 +21,24 @@ public class Person {
     private String digest;
     private Integer addressId;
     private Integer localeId;
-    private int creatorid;
-    private LocalDateTime createdts;
-    private Integer modifierid;
-    private LocalDateTime modifiedts;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatorid")
+    private Person creator;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modifierid")
+    private Person modifier;
+
+    @Column(name = "createdts")
+    private LocalDateTime createdTs;
+
+    @Column(name = "modifiedts")
+    private LocalDateTime modifiedTs;
+
     private String alias;
 
-    @Column(name = "id")
-    @Id
+
     public int getId() {
         return id;
     }
@@ -114,44 +127,40 @@ public class Person {
         this.localeId = localeId;
     }
 
-    @Basic
-    @Column(name = "creatorid")
-    public int getCreatorid() {
-        return creatorid;
+    public Person getCreator() {
+        return creator;
     }
 
-    public void setCreatorid(int creatorid) {
-        this.creatorid = creatorid;
+    public void setCreator(Person creator) {
+        this.creator = creator;
     }
 
     @Basic
     @Column(name = "createdts")
     public LocalDateTime getCreatedts() {
-        return createdts;
+        return createdTs;
     }
 
-    public void setCreatedts(LocalDateTime createdts) {
-        this.createdts = createdts;
+    public void setCreatedts(LocalDateTime createdTs) {
+        this.createdTs = createdTs;
     }
 
-    @Basic
-    @Column(name = "modifierid")
-    public Integer getModifierid() {
-        return modifierid;
+    public Person getModifier() {
+        return modifier;
     }
 
-    public void setModifierid(Integer modifierid) {
-        this.modifierid = modifierid;
+    public void setModifier(Person modifier) {
+        this.modifier = modifier;
     }
 
     @Basic
     @Column(name = "modifiedts")
     public LocalDateTime getModifiedts() {
-        return modifiedts;
+        return modifiedTs;
     }
 
-    public void setModifiedts(LocalDateTime modifiedts) {
-        this.modifiedts = modifiedts;
+    public void setModifiedts(LocalDateTime v) {
+        this.modifiedTs = modifiedTs;
     }
 
     @Basic
@@ -164,34 +173,32 @@ public class Person {
         this.alias = alias;
     }
 
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        if (!super.equals(object)) return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
 
-        Person person = (Person) object;
+        Person person = (Person) o;
 
         if (id != person.id) return false;
-        if (creatorid != person.creatorid) return false;
         if (personTypeId != null ? !personTypeId.equals(person.personTypeId) : person.personTypeId != null) return false;
         if (name != null ? !name.equals(person.name) : person.name != null) return false;
         if (scope != null ? !scope.equals(person.scope) : person.scope != null) return false;
-        if (!java.util.Arrays.equals(password, person.password)) return false;
+        if (!Arrays.equals(password, person.password)) return false;
         if (salt != null ? !salt.equals(person.salt) : person.salt != null) return false;
         if (digest != null ? !digest.equals(person.digest) : person.digest != null) return false;
         if (addressId != null ? !addressId.equals(person.addressId) : person.addressId != null) return false;
         if (localeId != null ? !localeId.equals(person.localeId) : person.localeId != null) return false;
-        if (createdts != null ? !createdts.equals(person.createdts) : person.createdts != null) return false;
-        if (modifierid != null ? !modifierid.equals(person.modifierid) : person.modifierid != null) return false;
-        if (modifiedts != null ? !modifiedts.equals(person.modifiedts) : person.modifiedts != null) return false;
-        if (alias != null ? !alias.equals(person.alias) : person.alias != null) return false;
-
-        return true;
+        if (creator != null ? !creator.equals(person.creator) : person.creator != null) return false;
+        if (createdTs != null ? !createdTs.equals(person.createdTs) : person.createdTs != null) return false;
+        if (modifier != null ? !modifier.equals(person.modifier) : person.modifier != null) return false;
+        if (modifiedTs != null ? !modifiedTs.equals(person.modifiedTs) : person.modifiedTs != null) return false;
+        return alias != null ? alias.equals(person.alias) : person.alias == null;
     }
 
+    @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + id;
+        int result = id;
         result = 31 * result + (personTypeId != null ? personTypeId.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (scope != null ? scope.hashCode() : 0);
@@ -200,11 +207,31 @@ public class Person {
         result = 31 * result + (digest != null ? digest.hashCode() : 0);
         result = 31 * result + (addressId != null ? addressId.hashCode() : 0);
         result = 31 * result + (localeId != null ? localeId.hashCode() : 0);
-        result = 31 * result + creatorid;
-        result = 31 * result + (createdts != null ? createdts.hashCode() : 0);
-        result = 31 * result + (modifierid != null ? modifierid.hashCode() : 0);
-        result = 31 * result + (modifiedts != null ? modifiedts.hashCode() : 0);
+        result = 31 * result + (creator != null ? creator.hashCode() : 0);
+        result = 31 * result + (createdTs != null ? createdTs.hashCode() : 0);
+        result = 31 * result + (modifier != null ? modifier.hashCode() : 0);
+        result = 31 * result + (modifiedTs != null ? modifiedTs.hashCode() : 0);
         result = 31 * result + (alias != null ? alias.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", personTypeId=" + personTypeId +
+                ", name='" + name + '\'' +
+                ", scope='" + scope + '\'' +
+                ", password=" + Arrays.toString(password) +
+                ", salt='" + salt + '\'' +
+                ", digest='" + digest + '\'' +
+                ", addressId=" + addressId +
+                ", localeId=" + localeId +
+                ", creatorid=" + (creator == null ? null : creator.getId()) +
+                ", createdts=" + createdTs +
+                ", modifierid=" + (modifier == null ? null : modifier.getId()) +
+                ", modifiedts=" + modifiedTs +
+                ", alias='" + alias + '\'' +
+                '}';
     }
 }

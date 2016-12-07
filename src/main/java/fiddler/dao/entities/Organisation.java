@@ -21,7 +21,7 @@ public class Organisation {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creatorid")
-    private Organisation creator;
+    private Person creator;
 
     @Column(name = "createdts")
     private LocalDateTime createdts;
@@ -31,14 +31,16 @@ public class Organisation {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modifierid")
-    private Organisation modifier;
+    private Person modifier;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_type_id")
     private OrganisationType organisationType;
 
-    //    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="template_id") private Organisation template;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "template_id")
+    private Organisation template;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "default_user_group_id")
     private UserGroup userGroup;
@@ -67,11 +69,11 @@ public class Organisation {
         this.name = name;
     }
 
-    public Organisation getCreatorId() {
+    public Person getCreatorId() {
         return creator;
     }
 
-    public void setCreatorId(Organisation creator) {
+    public void setCreatorId(Person creator) {
         this.creator = creator;
     }
 
@@ -91,11 +93,11 @@ public class Organisation {
         this.modifiedTs = modifiedTs;
     }
 
-    public Organisation getModifierId() {
+    public Person getModifierId() {
         return modifier;
     }
 
-    public void setModifierId(Organisation modifier) {
+    public void setModifierId(Person modifier) {
         this.modifier = modifier;
     }
 
@@ -171,7 +173,7 @@ public class Organisation {
         sb.append(", creatorId=").append(creator.getId());
         sb.append(", createdts=").append(createdts);
         sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifier.getId());
+        sb.append(", modifierId=").append(modifier == null ? null : modifier.getId());
         sb.append(", organisationType=").append(organisationType.getId());
         sb.append(", status='").append(status).append('\'');
         sb.append(", scope='").append(scope).append('\'');

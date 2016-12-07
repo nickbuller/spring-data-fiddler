@@ -29,15 +29,17 @@ public class Container {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creatorid")
-    private Organisation creator;
-
-    private LocalDateTime createdts;
-
-    private LocalDateTime modifiedts;
+    private Person creator;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "modifierid")
-    private Organisation modifier;
+    private Person modifier;
+
+    @Column(name = "createdts")
+    private LocalDateTime createdTs;
+
+    @Column(name = "modifiedts")
+    private LocalDateTime modifiedTs;
 
     private Boolean locked;
     private Long lockOwnerId;
@@ -132,35 +134,35 @@ public class Container {
         this.digest = digest;
     }
 
-    public Organisation getCreator() {
+    public Person getCreator() {
         return creator;
     }
 
-    public void setCreator(Organisation creator) {
+    public void setCreator(Person creator) {
         this.creator = creator;
     }
 
-    public LocalDateTime getCreatedts() {
-        return createdts;
+    public LocalDateTime getCreatedTs() {
+        return createdTs;
     }
 
-    public void setCreatedts(LocalDateTime createdts) {
-        this.createdts = createdts;
+    public void setCreatedTs(LocalDateTime createdts) {
+        this.createdTs = createdts;
     }
 
-    public LocalDateTime getModifiedts() {
-        return modifiedts;
+    public LocalDateTime getModifiedTs() {
+        return modifiedTs;
     }
 
-    public void setModifiedts(LocalDateTime modifiedts) {
-        this.modifiedts = modifiedts;
+    public void setModifiedTs(LocalDateTime modifiedts) {
+        this.modifiedTs = modifiedts;
     }
 
-    public Organisation getModifier() {
+    public Person getModifier() {
         return modifier;
     }
 
-    public void setModifier(Organisation modifier) {
+    public void setModifier(Person modifier) {
         this.modifier = modifier;
     }
 
@@ -241,10 +243,10 @@ public class Container {
                 ", templateId=" + templateId +
                 ", contentRbacTemplateId=" + contentRbacTemplateId +
                 ", digest='" + digest + '\'' +
-                ", creator=" + creator +
-                ", createdts=" + createdts +
-                ", modifiedts=" + modifiedts +
-                ", modifier=" + modifier +
+                ", creatorId=" + creator.getId() +
+                ", createdts=" + createdTs +
+                ", modifiedts=" + modifiedTs +
+                ", modifierId=" + (modifier == null ? null : modifier.getId()) +
                 ", locked=" + locked +
                 ", lockOwnerId=" + lockOwnerId +
                 ", lockKey=" + lockKey +

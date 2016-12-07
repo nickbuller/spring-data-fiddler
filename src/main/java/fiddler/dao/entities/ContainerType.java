@@ -14,16 +14,23 @@ public class ContainerType {
     private Long id;
     private String name;
     private String description;
+
     @Column(name = "private")
     private Boolean isPrivate;
-    @Column(name = "creatorid")
-    private Long creatorId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "creatorid")
+    private Person creator;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "modifierid")
+    private Person modifier;
+
     @Column(name = "createdts")
-    private LocalDateTime createdts;
+    private LocalDateTime createdTs;
+
     @Column(name = "modifiedts")
     private LocalDateTime modifiedTs;
-    @Column(name = "modifierid")
-    private Long modifierId;
 
     public Long getId() {
         return id;
@@ -65,20 +72,21 @@ public class ContainerType {
         this.owningOrganisationId = owningOrganisationId;
     }
 
-    public Long getCreatorId() {
-        return creatorId;
+
+    public Person getCreator() {
+        return creator;
     }
 
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
+    public void setCreator(Person creator) {
+        this.creator = creator;
     }
 
     public LocalDateTime getCreatedts() {
-        return createdts;
+        return createdTs;
     }
 
-    public void setCreatedts(LocalDateTime createdts) {
-        this.createdts = createdts;
+    public void setCreatedts(LocalDateTime createdTs) {
+        this.createdTs = createdTs;
     }
 
     public LocalDateTime getModifiedTs() {
@@ -89,12 +97,12 @@ public class ContainerType {
         this.modifiedTs = modifiedTs;
     }
 
-    public Long getModifierId() {
-        return modifierId;
+    public Person getModifier() {
+        return modifier;
     }
 
-    public void setModifierId(Long modifierId) {
-        this.modifierId = modifierId;
+    public void setModifier(Person modifier) {
+        this.modifier = modifier;
     }
 
     @Override
@@ -105,10 +113,10 @@ public class ContainerType {
         sb.append(", description='").append(description).append('\'');
         sb.append(", isPrivate=").append(isPrivate);
         sb.append(", owningOrganisationId=").append(owningOrganisationId);
-        sb.append(", creatorId=").append(creatorId);
-        sb.append(", createdts=").append(createdts);
+        sb.append(", creator=").append(creator);
+        sb.append(", createdts=").append(createdTs);
         sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifierId);
+        sb.append(", modifier=").append(modifier);
         sb.append('}');
         return sb.toString();
     }

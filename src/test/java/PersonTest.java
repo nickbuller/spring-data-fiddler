@@ -1,5 +1,7 @@
 import fiddler.Application;
-import fiddler.dao.repository.ContainerRepository;
+import fiddler.dao.generated.Account;
+import fiddler.dao.repository.PersonRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,25 +11,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
-/**
- * Created by nbuller on 06/12/16.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles()
-public class ContainerTest {
+public class PersonTest {
+
     @Inject
-    ContainerRepository containerRepository;
+    PersonRepository repository;
 
     @Test
     @Transactional
-    public void testRepositotyFindByType() {
-        containerRepository.findByContainerTypeIdOrderById(15L).forEach(container -> TestUtils.validateToString(container));
+    public void testRepositoryFindOne() {
+
+        Account account = repository.findOne(1L);
+        Assert.assertNotNull(account);
+        TestUtils.validateToString(account);
     }
 
     @Test
     @Transactional
-    public void testFindAll() {
-        containerRepository.findAll().forEach(container -> TestUtils.validateToString(container));
+    public void testRepositoryFindAll() {
+        repository.findAll().forEach(account -> TestUtils.validateToString(account));
     }
+
 }

@@ -1,6 +1,4 @@
 import fiddler.Application;
-import fiddler.dao.entities.ContainerType;
-import fiddler.dao.repository.ContainerRepository;
 import fiddler.dao.repository.ContainerTypeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,13 +18,18 @@ import javax.inject.Inject;
 public class ContainerTypeTest {
     @Inject
     ContainerTypeRepository containerTypeRepository;
-    @Inject
-    ContainerRepository containerRepository;
 
     @Test
     @Transactional
-    public void testContainer() {
-        ContainerType containerType = containerTypeRepository.findOne(40L);
-        containerRepository.findByContainerType(containerType).subList(1,10).forEach(container -> System.out.println(container));
+    public void testRepositoryFindByType() {
+        TestUtils.validateToString(containerTypeRepository.findOne(40L));
+
     }
+
+    @Test
+    @Transactional
+    public void testRepositoryFindAll() {
+        containerTypeRepository.findAll().forEach(containerType -> TestUtils.validateToString(containerType));
+    }
+
 }
