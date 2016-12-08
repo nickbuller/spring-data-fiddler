@@ -26,19 +26,13 @@ targetCompatibility = 1.8
 
 dependencies {
     // tag::jetty[]
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.hibernate:hibernate-core:5.2.0.Final")
     compile("postgresql:postgresql:9.1-901.jdbc4")
     compile("com.h2database:h2")
+    compile("org.apache.commons:commons-lang3:3.0")
 
-    // end::jetty[]
-    // tag::actuator[]
-    // compile("org.springframework.boot:spring-boot-starter-actuator")
-    // end::actuator[]
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

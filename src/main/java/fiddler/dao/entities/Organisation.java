@@ -1,5 +1,7 @@
 package fiddler.dao.entities;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -167,22 +169,22 @@ public class Organisation {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Organisation{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", creatorId=").append(creator.getId());
-        sb.append(", createdts=").append(createdts);
-        sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifier == null ? null : modifier.getId());
-        sb.append(", organisationType=").append(organisationType.getId());
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", scope='").append(scope).append('\'');
-        sb.append(", digest='").append(digest).append('\'');
-        sb.append(", userGroup=").append(userGroup);
-        sb.append(", locale=").append(locale);
-        sb.append(", account=").append(account);
-        sb.append(", thirdPartyReference='").append(thirdPartyReference).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return new ToStringBuilder(this)
+                .append("status", status)
+                .append("scope", scope)
+                .append("digest", digest)
+                .append("thirdPartyReference", thirdPartyReference)
+                .append("id", id)
+                .append("name", name)
+                .append("creatorId", creator == null ? null : creator.getId())
+                .append("createdts", createdts)
+                .append("modifiedTs", modifiedTs)
+                .append("modifierId", modifier == null ? null : modifier.getId())
+                .append("organisationType", organisationType)
+                .append("template", template)
+                .append("userGroup", userGroup)
+                .append("locale", locale)
+                .append("account", account)
+                .toString();
     }
 }
