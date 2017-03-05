@@ -1,5 +1,11 @@
 package fiddler.dao.entities;
 
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -7,89 +13,109 @@ import java.time.LocalDateTime;
  * Created by nickb on 04/12/16.
  */
 @Entity
+@Table(name = "account")
+@EqualsAndHashCode(doNotUseGetters = true)
+@ToString(doNotUseGetters = true)
 public class Account {
-    String scope;
     @Id
     @SequenceGenerator(name = "account_seq", sequenceName = "account_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
+    @Getter
+    @Setter
     private Long id;
+
+    @Column(name = "name")
+    @Getter
+    @Setter
     private String name;
+
+    @Column(name = "currency_id")
+    @Getter
+    @Setter
+    private Integer currencyId;
+
+    @Column(name = "default_tax_code_id")
+    @Getter
+    @Setter
+    private Integer defaultTaxCodeId;
+
+    @Column(name = "state_id")
+    @Getter
+    @Setter
+    private Integer stateId;
+
+    @Column(name = "scope")
+    @Getter
+    @Setter
+    private String scope;
+
+    @Column(name = "account_type_id")
+    @Getter
+    @Setter
+    private Integer accountTypeId;
+
+    @Column(name = "owning_organisation_id")
+    @Getter
+    @Setter
+    private Integer owningOrganisationId;
+
+    @Column(name = "private")
+    @Getter
+    @Setter
+    private Boolean isPrivate;
+
+    @Column(name = "parent_id")
+    @Getter
+    @Setter
+    private Integer parentId;
+
+    @Column(name = "locked")
+    @Getter
+    @Setter
+    private Boolean locked;
+
+    @Column(name = "lock_owner_id")
+    @Getter
+    @Setter
+    private Integer lockOwnerId;
+
+    @Column(name = "pick_context")
+    @Getter
+    @Setter
+    private String pickContext;
+
     @Column(name = "creatorid")
-    private Long creatorId;
+    @Getter
+    @Setter
+    private Integer creatorid;
+
     @Column(name = "createdts")
+    @Getter
+    @Setter
     private LocalDateTime createdts;
+
     @Column(name = "modifiedts")
-    private LocalDateTime modifiedTs;
+    @Getter
+    @Setter
+    private LocalDateTime modifiedts;
+
     @Column(name = "modifierid")
-    private Long modifierId;
+    @Getter
+    @Setter
+    private Integer modifierid;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "digest")
+    @Getter
+    @Setter
+    private String digest;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "chart_root_account_id")
+    @Getter
+    @Setter
+    private Integer chartRootAccountId;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getCreatorId() {
-        return creatorId;
-    }
-
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public LocalDateTime getCreatedts() {
-        return createdts;
-    }
-
-    public void setCreatedts(LocalDateTime createdts) {
-        this.createdts = createdts;
-    }
-
-    public LocalDateTime getModifiedTs() {
-        return modifiedTs;
-    }
-
-    public void setModifiedTs(LocalDateTime modifiedTs) {
-        this.modifiedTs = modifiedTs;
-    }
-
-    public Long getModifierId() {
-        return modifierId;
-    }
-
-    public void setModifierId(Long modifierId) {
-        this.modifierId = modifierId;
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Account{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", creatorId=").append(creatorId);
-        sb.append(", createdts=").append(createdts);
-        sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifierId);
-        sb.append(", scope='").append(scope).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
+    @Column(name = "lock_key")
+    @Getter
+    @Setter
+    private Long lockKey;
 }

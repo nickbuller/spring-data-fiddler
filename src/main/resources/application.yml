@@ -4,8 +4,8 @@ spring:
     username: indoc
     password: indoc
     tomcat:
-      max-active: 50
-      initial-size: 20
+      max-active: 1
+      initial-size: 1
 #      min-idle: 2
 #      max-idle: 2
       test-on-borrow: true

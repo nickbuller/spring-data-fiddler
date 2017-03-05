@@ -1,11 +1,11 @@
 package fiddler.dao.repository;
 
-import java.util.List;
-
-import fiddler.dao.entities.ContainerType;
 import fiddler.dao.entities.Container;
+import fiddler.dao.entities.ContainerType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ContainerRepository extends CrudRepository<Container, Long> {

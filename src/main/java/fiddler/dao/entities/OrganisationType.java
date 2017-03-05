@@ -1,7 +1,5 @@
 package fiddler.dao.entities;
 
-import fiddler.dao.base.TypeEntity;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -134,16 +132,16 @@ public class OrganisationType {
     public String toString() {
         final StringBuffer sb = new StringBuffer("OrganisationType{");
         sb.append("id=").append(id);
-        sb.append(", addressTypeId=").append(addressTypeId);
-        sb.append(", localeId=").append(localeId);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", isPrivate=").append(isPrivate);
-        sb.append(", organisation=").append(organisation.getId());
-        sb.append(", creator=").append(creator);
-        sb.append(", createdts=").append(createdts);
-        sb.append(", modifiedTs=").append(modifiedTs);
-        sb.append(", modifierId=").append(modifierId);
+//        sb.append(", addressTypeId=").append(addressTypeId);
+//        sb.append(", localeId=").append(localeId);
+//        sb.append(", name='").append(name).append('\'');
+//        sb.append(", description='").append(description).append('\'');
+//        sb.append(", isPrivate=").append(isPrivate);
+//        sb.append(", organisation=").append(organisation.getId());
+//        sb.append(", creator=").append(creator);
+//        sb.append(", createdts=").append(createdts);
+//        sb.append(", modifiedTs=").append(modifiedTs);
+//        sb.append(", modifierId=").append(modifierId);
         sb.append('}');
         return sb.toString();
     }

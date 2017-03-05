@@ -1,9 +1,11 @@
 import fiddler.Application;
-import fiddler.dao.generated.Account;
+import fiddler.dao.entities.Account;
 import fiddler.dao.repository.PersonRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +30,9 @@ public class PersonTest {
     @Test
     @Transactional
     public void testRepositoryFindAll() {
-        repository.findAll().forEach(account -> TestUtils.validateToString(account));
+        Logger LOG = LoggerFactory.getLogger(PersonTest.class);
+        LOG.info(String.valueOf(repository.findAll().spliterator().getExactSizeIfKnown()));
+//        repository.findAll().forEach(account -> TestUtils.validateToString(account));
     }
 
 }
