@@ -1,5 +1,5 @@
 import fiddler.Application;
-import fiddler.dao.entities.Account;
+import fiddler.dao.entities.account.Account;
 import fiddler.dao.repository.AccountRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class AccountTest {
     @Test
     @Transactional
     public void testRepositoryFindAll() {
-        accountRepository.findAll().forEach(TestUtils::validateToString);
-    }
+		accountRepository.findAll().forEach(TestUtils::validateStandardOverrideMethods);
+	}
 
 }

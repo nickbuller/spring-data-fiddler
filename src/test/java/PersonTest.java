@@ -1,5 +1,5 @@
 import fiddler.Application;
-import fiddler.dao.entities.Account;
+import fiddler.dao.entities.account.Account;
 import fiddler.dao.repository.PersonRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,11 +21,10 @@ public class PersonTest {
     @Test
     @Transactional
     public void testRepositoryFindOne() {
-
         Account account = repository.findOne(1L);
         Assert.assertNotNull(account);
-        TestUtils.validateToString(account);
-    }
+		TestUtils.validateStandardOverrideMethods(account);
+	}
 
     @Test
     @Transactional

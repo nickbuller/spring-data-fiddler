@@ -1,6 +1,6 @@
 package fiddler.dao.repository;
 
-import fiddler.dao.entities.Account;
+import fiddler.dao.entities.account.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

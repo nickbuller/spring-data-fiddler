@@ -25,15 +25,16 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.projectlombok:lombok:1.16.10"
+    compile "org.projectlombok:lombok:1.16.14"
     // tag::jetty[]
-    compile("org.springframework.boot:spring-boot-starter")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.hibernate:hibernate-core:5.2.0.Final")
-    compile("postgresql:postgresql:9.1-901.jdbc4")
-    compile("com.h2database:h2")
-    compile("org.apache.commons:commons-lang3:3.0")
+    compile("org.springframework.boot:spring-boot-starter:1.5.2.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE")
 
-    testCompile("junit:junit")
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.hibernate:hibernate-core:5.2.8.Final")
+    compile("postgresql:postgresql:9.1-901.jdbc4")
+    compile("com.h2database:h2:1.4.193")
+    compile("org.apache.commons:commons-lang3:3.5")
+
+    testCompile("junit:junit:4.12")
+    testCompile("org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE")
 }

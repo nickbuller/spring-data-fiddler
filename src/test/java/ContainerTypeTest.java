@@ -1,5 +1,5 @@
 import fiddler.Application;
-import fiddler.dao.repository.ContainerTypeRepository;
+import fiddler.dao.repository.container.ContainerTypeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -34,7 +34,6 @@ public class ContainerTypeTest {
     @Transactional
     public void testRepositoryFindAll() {
 //        LOG.info(String.valueOf(repository.findAll().spliterator().getExactSizeIfKnown()));
-        repository.findAll().forEach(containerType -> TestUtils.validateToString(containerType));
-    }
-
+		repository.findAll().forEach(containerType -> TestUtils.validateStandardOverrideMethods(containerType));
+	}
 }
