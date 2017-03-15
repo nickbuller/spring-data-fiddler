@@ -9,9 +9,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- * Created by nickb on 04/12/16.
- */
 @Entity
 @Table(name = "locale", schema = "public", catalog = "indoc")
 @EqualsAndHashCode(doNotUseGetters = true)

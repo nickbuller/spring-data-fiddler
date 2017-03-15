@@ -3,9 +3,6 @@ package fiddler.dao.base;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * Created by nickb on 04/12/16.
- */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class TypeEntity {

@@ -2,9 +2,6 @@ package fiddler.dao.entities.address;
 
 import org.springframework.beans.factory.annotation.Value;
 
-/**
- * Created by nickb on 15/03/17.
- */
 public interface SaneAddress {
 	@Value("#{target.getAddressTagValues().?[addressTag.tag.name =='Line 1'][0].value.stringValue}")
 	String getFirstLine();

@@ -13,9 +13,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by nickb on 04/12/16.
- */
 @Entity
 @EqualsAndHashCode(doNotUseGetters = true, exclude = {"template"})
 @ToString(doNotUseGetters = true, exclude = {"template"})

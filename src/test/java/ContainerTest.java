@@ -7,26 +7,23 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.stream.Stream;
 
-/**
- * Created by nbuller on 06/12/16.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @ActiveProfiles()
 
 public class ContainerTest {
-    Logger LOG = LoggerFactory.getLogger(ContainerTest.class);
-    @Inject
-    ContainerRepository repository;
+	final Logger LOG = LoggerFactory.getLogger(ContainerTest.class);
+	@Autowired
+	ContainerRepository repository;
 
     @Test
 	@Ignore

@@ -23,26 +23,39 @@ import javax.transaction.Transactional;
 @EnableJpaRepositories()
 @ComponentScan
 public class Application implements CommandLineRunner {
-	Logger LOG = LoggerFactory.getLogger(Application.class);
+	final Logger LOG = LoggerFactory.getLogger(Application.class);
+
+	final
+	ContainerRepository containerRepository;
+	final
+	ContainerTypeRepository containerTypeRepository;
+	final
+	TagDataRepository tagDataRepository;
+	final
+	TagFormatRepository tagFormatRepository;
+	final
+	ContainerTagRepository containerTagRepository;
+	final
+	ContainerTypeTagRepository containerTypeTagRepository;
+	final
+	ContainerTagDisplayOrderRepository containerTagDisplayOrderRepository;
+	final
+	AddressRepository addressRepository;
+	final
+	ContainerOrganisationMembershipRepository containerOrganisationMembershipRepository;
 
 	@Autowired
-	ContainerRepository containerRepository;
-	@Autowired
-	ContainerTypeRepository containerTypeRepository;
-	@Autowired
-	TagDataRepository tagDataRepository;
-	@Autowired
-	TagFormatRepository tagFormatRepository;
-	@Autowired
-	ContainerTagRepository containerTagRepository;
-	@Autowired
-	ContainerTypeTagRepository containerTypeTagRepository;
-	@Autowired
-	ContainerTagDisplayOrderRepository containerTagDisplayOrderRepository;
-	@Autowired
-	AddressRepository addressRepository;
-	@Autowired
-	ContainerOrganisationMembershipRepository containerOrganisationMembershipRepository;
+	public Application(ContainerRepository containerRepository, ContainerTypeRepository containerTypeRepository, TagDataRepository tagDataRepository, TagFormatRepository tagFormatRepository, ContainerTagRepository containerTagRepository, ContainerTypeTagRepository containerTypeTagRepository, ContainerTagDisplayOrderRepository containerTagDisplayOrderRepository, AddressRepository addressRepository, ContainerOrganisationMembershipRepository containerOrganisationMembershipRepository) {
+		this.containerRepository = containerRepository;
+		this.containerTypeRepository = containerTypeRepository;
+		this.tagDataRepository = tagDataRepository;
+		this.tagFormatRepository = tagFormatRepository;
+		this.containerTagRepository = containerTagRepository;
+		this.containerTypeTagRepository = containerTypeTagRepository;
+		this.containerTagDisplayOrderRepository = containerTagDisplayOrderRepository;
+		this.addressRepository = addressRepository;
+		this.containerOrganisationMembershipRepository = containerOrganisationMembershipRepository;
+	}
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);

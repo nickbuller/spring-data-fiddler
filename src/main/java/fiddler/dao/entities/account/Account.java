@@ -15,9 +15,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by nickb on 04/12/16.
- */
 @Entity
 @Table(name = "account", schema = "public", catalog = "indoc")
 @EqualsAndHashCode(doNotUseGetters = true, exclude = {"parent", "chartRootAccount"})

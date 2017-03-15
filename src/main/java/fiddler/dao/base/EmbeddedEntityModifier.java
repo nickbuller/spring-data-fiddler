@@ -10,9 +10,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * Created by nickb on 12/03/17.
- */
 @Embeddable
 @Access(AccessType.FIELD)
 @EqualsAndHashCode(doNotUseGetters = true, exclude = {"modifier"})

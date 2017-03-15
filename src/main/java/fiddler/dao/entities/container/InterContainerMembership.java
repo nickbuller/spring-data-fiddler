@@ -1,4 +1,4 @@
-package fiddler.dao.entities;
+package fiddler.dao.entities.container;
 
 import fiddler.dao.base.EmbeddedEntityCreator;
 import fiddler.dao.base.EmbeddedEntityModifier;
@@ -10,10 +10,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
-/**
- * Created by nbuller on 06/12/16.
- */
 @Entity
 @Table(name = "inter_container_membership", schema = "public", catalog = "indoc")
 @EqualsAndHashCode(doNotUseGetters = true)

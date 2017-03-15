@@ -3,9 +3,6 @@ package fiddler.dao.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * Created by nickb on 04/12/16.
- */
 @Entity
 public class UserGroup {
     Boolean allowExternalMembership;
